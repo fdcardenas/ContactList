@@ -1,0 +1,104 @@
+
+<!--It will shown when the JSON is loaded-->
+
+<div class="container main"  ng-show="loaded" >
+		<div class="row bg-info" >
+			<div class="col-md-4">
+				<h1 class="text-info"><b>Carne de contacts</b></h1>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<h5 class="text-left" style="padding-bottom: 0.5em">Votre carnet contient {{product.length}}</h5> <!--It shows the number of contacts-->
+			</div>
+		</div>
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table" >
+
+					<!--It shows the fields of the table-->
+					<thead>
+				      	<tr>
+				      		<th>
+				          		<a href="#" ng-click="selectField('name.v')"> <!--If the field is clicked, it will be set as the sorting field.-->
+				          			<h3><b>Nom</b></h3>
+				          		</a>
+				        	</th>
+				      		<th>
+				          		<a href="#" ng-click="selectField('firstName.v')">
+				          			<h3><b>Prénom</b></h3>
+				          		</a>
+				        	</th>
+				        	<th>
+				          		<a href="#" ng-click="selectField('birthDate.v')">
+				          			<h3><b>Age</b></h3>
+				          		</a>
+				        	</th>
+				        	<th>
+				          		<a href="#" ng-click="selectField('tel.v')">
+				            		<h3><b>Téléphone</b></h3>
+				          		</a>
+				        	</th>
+				        	<th>
+				          		<a href="#" ng-click="selectField('address.v')">
+				          			<h3><b>Adresse</b></h3>
+				          		</a>
+				        	</th>
+				      	</tr>
+		    		</thead>
+		    		<!--It shows each row of the table-->
+			    		<tbody>
+
+			    			<!--It sets the ng-class depending on the color returned by the set Color function
+			    				and it also sorts the table depending on the Field and the reverseSort(ASC or DESC)-->
+			      			<tr ng-repeat="info in product|orderBy:orderByField:reverseSort" ng-class="setColor(info.birthDate.v)">
+			        			<td>
+			        				{{info.name.v}}
+			        			</td>
+			        			<td>
+			        				{{info.firstName.v}}
+			        			</td>
+			        			<!--It calculates the age of the contact sending his/her birthday date as the parameter-->
+			        			<td>
+			        				{{calculateAge(info.birthDate.v)}} ({{info.birthDate.v | date:'yyyy-MM-dd'}})
+			        			</td>
+			        			<td>
+			        				<!--It allows to click in the tel and call easily-->
+			        				<a ng-href="tel:+{{info.tel.v}}">
+			        					{{info.tel.v}}
+			        				</a>
+			        			</td>
+			        			<td>
+			        				<!--It allows to click in the address. It will show the address in the google map-->
+			        				<a ng-href="http://maps.google.com/maps?q={{info.address.v}}">
+			        					{{info.address.v}}
+			        				</a>
+			        			</td>
+			      			</tr>
+			      			
+			    		</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+
+<!--It defines the style for the borders-->
+
+<style>
+	div.container.main{
+		border-style: solid;
+    	border-width: 1px;
+    	border-color: #D8D8D8;
+	}
+
+
+	div.row{
+		border-bottom-style: solid;
+    	border-bottom-width: 1px;
+    	border-bottom-color: #D8D8D8;
+	}
+
+
+
+</style>

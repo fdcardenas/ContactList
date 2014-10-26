@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple app</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="filters.js"></script>
+	<script type="text/javascript" src="components.js"></script>
+
+	<!--To add some mobile response-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+	<!--The name of the main module-->
+	<body ng-app='main'>
+
+			<!--The controller which brings the DATA-->
+			<div ng-controller="dataJSONController">
+
+				<!--The Loading bar-->
+				<loader></loader>
+
+				<!--The List with all the Data in the table-->
+				<list></list>
+
+			</div>
+	</body>
+</html>
